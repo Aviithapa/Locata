@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.locata.R
 import com.example.locata.ui.main.ui.dashboard.DashboardFragment
 import com.example.locata.ui.main.ui.home.HomeFragment
+import com.example.locata.ui.main.ui.location.MapsFragment
 import com.example.locata.ui.main.ui.notifications.NotificationsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -27,7 +28,7 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_dashboard -> {
-                    replaceFragment(DashboardFragment())
+                    replaceFragment(MapsFragment())
                     true
                 }
 

@@ -45,21 +45,51 @@
                 android:layout_margin="10dp"
                 android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/loginViewsMargin"
+                    android:text="Current Location"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"/>
+
                 <EditText
                     android:id="@+id/editTextName"
                     style="@style/modifiedEditText"
-                    android:layout_marginTop="@dimen/loginViewsMargin"
-                    android:hint="Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="Your current location"
+                    android:textColorHint="@color/black"
                     android:inputType="textPersonName"
-                    android:maxLines="1" />
+                    android:drawableRight="@drawable/ic_baseline_edit_location_alt_24"
+                    android:maxLines="1"
+                    android:background="@drawable/custom_edit_text"
 
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/loginViewsMargin"
+                    android:text="Destination Location"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"/>
                 <EditText
                     android:id="@+id/editName"
                     style="@style/modifiedEditText"
-                    android:layout_marginTop="@dimen/loginViewsMargin"
-                    android:hint="Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="Dillibazar"
+                    android:textColorHint="@color/black"
                     android:inputType="textPersonName"
-                    android:maxLines="1" />
+                    android:maxLines="1"
+                    android:background="@drawable/custom_edit_text"
+                    android:drawablePadding="12dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"/>
 
                 <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
                     android:id="@+id/cirRegisterButton"
@@ -88,12 +118,6 @@
         android:layout_below="@+id/search_details"
         android:text="Place Near You "/>
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView2"
-        android:layout_below="@+id/place"
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
 
 </RelativeLayout>
