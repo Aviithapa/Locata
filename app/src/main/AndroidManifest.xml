@@ -11,17 +11,16 @@
         android:theme="@style/Theme.Locata">
         <activity
             android:name=".ui.main.HomeActivity"
-            android:label="@string/title_activity_home"
-            android:theme="@style/Theme.Locata.NoActionBar"></activity>
-        <activity android:name=".ui.authentication.RegisterActivity">
+            android:label="@string/title_activity_home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.authentication.LoginActivity"></activity>
-        <activity android:name=".ui.splash.SplashActivity"></activity>
+        <activity android:name=".ui.authentication.RegisterActivity"/>
+        <activity android:name=".ui.authentication.LoginActivity" />
+        <activity android:name=".ui.splash.SplashActivity" />
         <activity android:name=".MainActivity" />
     </application>
 

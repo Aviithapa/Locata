@@ -22,4 +22,6 @@
     <style name="Theme.Locata.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Locata.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
 </resources>
