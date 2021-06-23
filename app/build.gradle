@@ -67,4 +67,11 @@ dependencies {
     //Maps
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
 
+    //gif animation
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
+
+    //Circle Image
+    implementation "de.hdodenhof:circleimageview:3.0.1"
+    implementation 'com.mikhaellopez:circularimageview:4.2.0'
+
 }

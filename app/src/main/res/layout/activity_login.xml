@@ -77,6 +77,7 @@
                     app:spinning_bar_width="4dp" />
 
                 <TextView
+                    android:id="@+id/txtRegister"
                     style="@style/parent"
                     android:layout_marginTop="@dimen/loginViewsMargin"
                     android:text="New user? Register Now"

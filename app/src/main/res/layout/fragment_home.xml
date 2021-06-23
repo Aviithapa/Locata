@@ -15,6 +15,12 @@
             android:layout_height="wrap_content"
             android:background="#f8f8f8"
             android:layout_margin="20dp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/post_user"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="5dp"
+                />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -64,7 +70,6 @@
                     android:drawableRight="@drawable/ic_baseline_edit_location_alt_24"
                     android:maxLines="1"
                     android:background="@drawable/custom_edit_text"
-
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
                     />
@@ -83,6 +88,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:hint="Dillibazar"
+                    android:drawableRight="@drawable/ic_baseline_edit_location_alt_24"
                     android:textColorHint="@color/black"
                     android:inputType="textPersonName"
                     android:maxLines="1"

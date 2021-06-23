@@ -102,6 +102,7 @@
                         app:spinning_bar_width="4dp" />
 
                     <TextView
+                        android:id="@+id/txtAlreadyHaveAccount"
                         style="@style/parent"
                         android:layout_marginTop="@dimen/loginViewsMargin"
                         android:text="Already have an account?"
@@ -176,6 +177,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/ic_side_bg"/>
     <ImageView
+        android:id="@+id/ImageViewBack"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_width="wrap_content"
