@@ -1,8 +1,6 @@
 package com.example.locata.utils
 
 import android.widget.EditText
-import androidx.fragment.app.Fragment
-
 
 
 fun validateEmail(email:String,etEmail:EditText):Boolean{
