@@ -16,13 +16,19 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.locata.R
 import com.example.locata.utils.checkRunTimePermission
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.model.Marker
 import java.util.*
 
 
-class HomeFragment : Fragment(), LocationListener {
+class HomeFragment : Fragment(), LocationListener, GoogleApiClient.ConnectionCallbacks,
+    GoogleApiClient.OnConnectionFailedListener {
 
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var mMap: MapView
@@ -33,11 +39,17 @@ class HomeFragment : Fragment(), LocationListener {
     private var latitudeLabel: String? = null
     private var longitudeLabel: String? = null
     private val locationPermissionCode = 2
+    private val GoogleMap: GoogleMap? = null
+    var mLastLocation: Location? = null
+    var mCurrLocationMarker: Marker? = null
+    var mGoogleApiClient: GoogleApiClient? = null
+    var mLocationRequest: LocationRequest? = null
+
     @SuppressLint("MissingPermission")
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
@@ -55,7 +67,13 @@ class HomeFragment : Fragment(), LocationListener {
     }
 
     private fun getLastLocation() {
-        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -71,14 +89,15 @@ class HomeFragment : Fragment(), LocationListener {
                 val geocoder: Geocoder
                 val addresses: List<Address>
                 geocoder = Geocoder(requireContext(), Locale.getDefault())
-                addresses = geocoder.getFromLocation((lastLocation)!!.latitude, (lastLocation)!!.longitude, 1) // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+                addresses = geocoder.getFromLocation(
+                    (lastLocation)!!.latitude,
+                    (lastLocation)!!.longitude,
+                    1
+                ) // Here 1 represent max location result to returned, by documents it recommended 1 to 5
                 val address = addresses[0].subLocality
                 val cityName = addresses[0].locality
                 val stateName = addresses[0].adminArea
-//                val loc: String= addresses[0].getAddressLine(0)
-                tvGpsLocation.setText("${address +' '+cityName}")
-//                latitudeText!!.text = latitudeLabel + ": " + (lastLocation)!!.latitude
-//                longitudeText!!.text = longitudeLabel + ": " + (lastLocation)!!.longitude
+                tvGpsLocation.setText("${address + ' ' + cityName}")
             }
             else {
                 Log.w(TAG, "getLastLocation:exception", task.exception)
@@ -94,15 +113,15 @@ class HomeFragment : Fragment(), LocationListener {
 
     private fun startLocationPermissionRequest() {
         ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
-                REQUEST_PERMISSIONS_REQUEST_CODE
+            requireActivity(),
+            arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
+            REQUEST_PERMISSIONS_REQUEST_CODE
         )
     }
     private fun requestPermissions() {
         val shouldProvideRationale = ActivityCompat.shouldShowRequestPermissionRationale(
-                requireActivity(),
-                Manifest.permission.ACCESS_COARSE_LOCATION
+            requireActivity(),
+            Manifest.permission.ACCESS_COARSE_LOCATION
         )
         if (shouldProvideRationale) {
             Log.i(TAG, "Displaying permission rationale to provide additional context.")
@@ -114,8 +133,8 @@ class HomeFragment : Fragment(), LocationListener {
         }
     }
     override fun onRequestPermissionsResult(
-            requestCode: Int, permissions: Array<String>,
-            grantResults: IntArray
+        requestCode: Int, permissions: Array<String>,
+        grantResults: IntArray
     ) {
         Log.i(TAG, "onRequestPermissionResult")
         if (requestCode == REQUEST_PERMISSIONS_REQUEST_CODE) {
@@ -145,37 +164,18 @@ class HomeFragment : Fragment(), LocationListener {
         val addresses: List<Address>
         geocoder = Geocoder(requireContext(), Locale.getDefault())
         addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1) // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-
         val loc: String= addresses[0].getAddressLine(0) // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
     }
+
+    override fun onConnected(p0: Bundle?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onConnectionSuspended(p0: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onConnectionFailed(p0: ConnectionResult) {
+        TODO("Not yet implemented")
+    }
 }
-//    private fun getLocation() {
-//        locationManager = requireContext().getSystemService(LOCATION_SERVICE) as LocationManager
-//        if ((ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
-//            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), locationPermissionCode)
-//        }
-//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5f, this)
-//    }
-//    override fun onLocationChanged(location: Location) {
-//
-//        val geocoder: Geocoder
-//        val addresses: List<Address>
-//        geocoder = Geocoder(requireContext(), Locale.getDefault())
-//        addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1) // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-//
-//        val loc: String= addresses[0].getAddressLine(0) // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-//        Toast.makeText(requireContext(), "The location $loc", Toast.LENGTH_SHORT).show()
-//        println(loc)
-//        tvGpsLocation.setText("$loc")
-//
-//    }
-//    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-//        if (requestCode == locationPermissionCode) {
-//            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                Toast.makeText(requireContext(), "Permission Granted", Toast.LENGTH_SHORT).show()
-//            }
-//            else {
-//                Toast.makeText(requireContext(), "Permission Denied", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//    }
