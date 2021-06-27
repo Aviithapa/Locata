@@ -10,7 +10,6 @@ import com.example.locata.ui.main.ui.dashboard.DashboardFragment
 import com.example.locata.ui.main.ui.home.HomeFragment
 import com.example.locata.ui.main.ui.location.MapsFragment
 import com.example.locata.ui.main.ui.notifications.NotificationsFragment
-import com.example.locata.utils.checkInternetConnection
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
@@ -19,8 +18,6 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
-        checkInternetConnection(this)
         frameLayout = findViewById(R.id.nav_host_fragment)
         bottmNavigation = findViewById(R.id.nav_view)
         replaceFragment(HomeFragment())
@@ -43,6 +40,7 @@ class HomeActivity : AppCompatActivity() {
             }
             true;
         }
+
     }
 
 

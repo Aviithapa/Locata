@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.locata.R
+import com.example.locata.utils.checkInternetConnection
 import com.example.locata.utils.checkRunTimePermission
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
@@ -62,7 +63,10 @@ class HomeFragment : Fragment(), LocationListener, GoogleApiClient.ConnectionCal
      override fun onStart() {
         super.onStart()
         checkRunTimePermission(requireActivity())
-            getLastLocation()
+         if (checkInternetConnection(requireContext())){
+             getLastLocation()
+         }
+
     }
 
     private fun getLastLocation() {

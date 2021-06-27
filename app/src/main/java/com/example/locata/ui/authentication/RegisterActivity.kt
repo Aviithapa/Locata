@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
 import com.example.locata.R
+import com.example.locata.utils.checkInternetConnection
 import com.example.locata.utils.validateInputs
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,6 +33,7 @@ class RegisterActivity : AppCompatActivity() {
         txtAlreadyHaveAccount=findViewById(R.id.txtAlreadyHaveAccount)
         cirRegisterButton=findViewById(R.id.cirRegisterButton)
 
+        checkInternetConnection(this)
         cirRegisterButton.setOnClickListener{
             if(validateInputs(name,email,password,contact)){
                 RegisterUser()
