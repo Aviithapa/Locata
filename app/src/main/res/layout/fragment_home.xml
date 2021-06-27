@@ -124,6 +124,12 @@
         android:layout_below="@+id/search_details"
         android:text="Place Near You "/>
 
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_below="@id/place"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </RelativeLayout>

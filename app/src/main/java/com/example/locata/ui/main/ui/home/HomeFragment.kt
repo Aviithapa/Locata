@@ -39,7 +39,6 @@ class HomeFragment : Fragment(), LocationListener, GoogleApiClient.ConnectionCal
     private var latitudeLabel: String? = null
     private var longitudeLabel: String? = null
     private val locationPermissionCode = 2
-    private val GoogleMap: GoogleMap? = null
     var mLastLocation: Location? = null
     var mCurrLocationMarker: Marker? = null
     var mGoogleApiClient: GoogleApiClient? = null

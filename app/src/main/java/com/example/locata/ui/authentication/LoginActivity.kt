@@ -8,6 +8,7 @@ import android.widget.TextView
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
 import com.example.locata.R
 import com.example.locata.ui.main.HomeActivity
+import com.example.locata.utils.checkInternetConnection
 import com.example.locata.utils.checkRunTimePermission
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -26,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
         editEmail=findViewById(R.id.editTextEmail)
         editPassword=findViewById(R.id.editTextPassword)
         cirLoginButton=findViewById(R.id.cirLoginButton)
+        checkInternetConnection(this)
 
         cirLoginButton.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
