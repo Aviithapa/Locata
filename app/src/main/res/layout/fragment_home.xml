@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 <RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="#f8f8f8"
     tools:context=".ui.main.ui.home.HomeFragment"
     android:focusableInTouchMode="true">
@@ -128,12 +128,13 @@
         android:layout_below="@+id/search_details"
         android:text="Place Near You "/>
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
+    <fragment
+        android:id="@+id/map"
         android:layout_below="@id/place"
         android:layout_margin="16dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_height="250dp" />
 
 
 </RelativeLayout>

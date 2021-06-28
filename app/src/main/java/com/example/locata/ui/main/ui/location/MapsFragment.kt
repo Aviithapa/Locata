@@ -37,11 +37,12 @@ class MapsFragment : Fragment() {
          * user has installed Google Play services and returned to the app.
          */
 
+
         val sydney = LatLng(
             27.704122, 85.324952
         )
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Dillibazar"))
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 18f), 3000, null)
+        googleMap.addMarker(MarkerOptions().position(sydney).title("Abhishek"))
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 18f))
     }
 
     override fun onCreateView(
