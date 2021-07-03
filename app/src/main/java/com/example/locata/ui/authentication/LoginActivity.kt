@@ -37,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
                                 HomeActivity::class.java
                         )
                 )
+
             }
         }
         txtRegister.setOnClickListener {
@@ -48,8 +49,11 @@ class LoginActivity : AppCompatActivity() {
                     )
                 )
                 finish()
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         }
         checkRunTimePermission(this)
     }
+
+
 }

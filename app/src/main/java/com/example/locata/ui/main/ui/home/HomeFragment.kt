@@ -108,6 +108,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener,
                 val cityName = addresses[0].locality
                 val stateName = addresses[0].adminArea
                 tvGpsLocation.setText("${address + ' ' + cityName}")
+                val latLng = LatLng(lastLocation!!.latitude, lastLocation!!.longitude)
+//                mMap!!.addMarker(MarkerOptions().position(latLng).title("Your current location"))
+                mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18f))
 
             }
             else {
@@ -117,9 +120,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener,
         }
     }
     private fun showMessage(string: String) {
-
             Toast.makeText(requireContext(), string, Toast.LENGTH_LONG).show()
-
     }
 
     private fun startLocationPermissionRequest() {
@@ -170,18 +171,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener,
         private val REQUEST_PERMISSIONS_REQUEST_CODE = 34
     }
 
-//    override fun onLocationChanged(location: Location) {
-//                val geocoder: Geocoder
-//        val addresses: List<Address>
-//        geocoder = Geocoder(requireContext(), Locale.getDefault())
-//        addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1) // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-//        val loc: String= addresses[0].getAddressLine(0) // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-//    }
-
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(requireContext(),
                             Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {

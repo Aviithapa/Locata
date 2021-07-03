@@ -47,6 +47,7 @@ class HomeActivity : AppCompatActivity() {
     fun replaceFragment(fragment: Fragment) {
         if (fragment != null) {
             val transaction = supportFragmentManager.beginTransaction()
+            transaction.setCustomAnimations(R.anim.slide_in_left,R.anim.slide_out_left);
             transaction.replace(R.id.nav_host_fragment, fragment)
             transaction.commit()
         }
