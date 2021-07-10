@@ -1,4 +1,4 @@
-package com.example.locata.ui.main.ui.location
+package com.example.locata.ui.main.view.main.ui.location
 
 
 class PojoDirection {

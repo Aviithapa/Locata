@@ -1,4 +1,4 @@
-package com.example.locata.ui.main.ui.home
+package com.example.locata.ui.main.view.main.ui.home
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -24,14 +24,12 @@ import com.example.locata.R
 import com.example.locata.utils.checkInternetConnection
 import com.example.locata.utils.checkRunTimePermission
 import com.google.android.gms.common.ConnectionResult
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.*
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions

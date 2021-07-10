@@ -9,7 +9,7 @@
     You can also add your credentials to an existing key, using these values:
 
     Package name:
-    com.example.locata.ui.main.ui.location
+    com.example.locata.ui.main.view.main.ui.location
 
     SHA-1 certificate fingerprint:
     BA:6B:E8:1E:EA:39:7B:EF:A0:3F:31:66:6D:E6:7E:9F:2C:95:CF:76

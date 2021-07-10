@@ -1,10 +1,10 @@
-package com.example.locata.ui.splash
+package com.example.locata.ui.main.view.splash
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.locata.R
-import com.example.locata.ui.authentication.LoginActivity
+import com.example.locata.ui.main.view.authentication.LoginActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

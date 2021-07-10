@@ -1,4 +1,4 @@
-package com.example.locata.ui.main.ui.home
+package com.example.locata.ui.main.view.main.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

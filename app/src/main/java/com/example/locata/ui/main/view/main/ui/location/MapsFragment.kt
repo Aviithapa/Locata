@@ -1,4 +1,4 @@
-package com.example.locata.ui.main.ui.location
+package com.example.locata.ui.main.view.main.ui.location
 
 import android.graphics.Color
 import android.os.AsyncTask

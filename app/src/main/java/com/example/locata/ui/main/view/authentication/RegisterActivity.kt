@@ -1,4 +1,4 @@
-package com.example.locata.ui.authentication
+package com.example.locata.ui.main.view.authentication
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

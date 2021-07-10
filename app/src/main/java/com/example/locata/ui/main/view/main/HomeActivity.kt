@@ -1,15 +1,13 @@
-package com.example.locata.ui.main
+package com.example.locata.ui.main.view.main
 
-import android.hardware.Sensor
 import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.locata.R
-import com.example.locata.ui.main.ui.dashboard.DashboardFragment
-import com.example.locata.ui.main.ui.home.HomeFragment
-import com.example.locata.ui.main.ui.location.MapsFragment
-import com.example.locata.ui.main.ui.notifications.NotificationsFragment
+import com.example.locata.ui.main.view.main.ui.home.HomeFragment
+import com.example.locata.ui.main.view.main.ui.location.MapsFragment
+import com.example.locata.ui.main.view.main.ui.notifications.NotificationsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {

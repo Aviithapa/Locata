@@ -1,4 +1,4 @@
-package com.example.locata.ui.main.ui.dashboard
+package com.example.locata.ui.main.view.main.ui.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater

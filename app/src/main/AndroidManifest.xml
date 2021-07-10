@@ -22,16 +22,16 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".ui.main.HomeActivity"
+            android:name=".ui.main.view.main.HomeActivity"
             android:label="@string/title_activity_home"
             android:windowSoftInputMode="adjustPan">
 
         </activity>
-        <activity android:name=".ui.authentication.RegisterActivity">
+        <activity android:name="com.example.locata.ui.main.view.authentication.RegisterActivity">
 
         </activity>
-        <activity android:name=".ui.authentication.LoginActivity" />
-        <activity android:name=".ui.splash.SplashActivity">
+        <activity android:name="com.example.locata.ui.main.view.authentication.LoginActivity" />
+        <activity android:name="com.example.locata.ui.main.view.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
