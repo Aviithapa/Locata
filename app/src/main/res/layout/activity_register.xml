@@ -68,7 +68,7 @@
 
 
                     <EditText
-                        android:id="@+id/editTextEmail"
+                        android:id="@+id/editTextUserName"
                         style="@style/modifiedEditText"
                         android:layout_marginTop="@dimen/loginViewsMargin"
                         android:hint="@string/login_email_hint"
