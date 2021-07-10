@@ -1,20 +1,18 @@
-package net.simplifiedcoding.mvvmsampleapp.data.db
+package com.example.locata.data.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import net.simplifiedcoding.mvvmsampleapp.data.db.entities.Quote
-import net.simplifiedcoding.mvvmsampleapp.data.db.entities.User
+import com.example.locata.data.db.entities.User
 
 @Database(
-    entities = [User::class, Quote::class],
+    entities = [User::class],
     version = 1
 )
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun getUserDao(): UserDao
-    abstract fun getQuoteDao(): QuoteDao
 
     companion object {
 

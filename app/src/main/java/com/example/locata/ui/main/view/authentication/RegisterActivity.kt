@@ -6,76 +6,55 @@ import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
 import com.example.locata.R
+import com.example.locata.databinding.ActivityLoginBinding
+import com.example.locata.ui.main.viewModel.authentication.AuthViewModel
+import com.example.locata.ui.main.viewModel.authentication.AuthViewModelFactory
 import com.example.locata.utils.checkInternetConnection
 import com.example.locata.utils.validateInputs
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.kodein
+import org.kodein.di.generic.instance
 
-class RegisterActivity : AppCompatActivity() {
-    private lateinit var name: EditText
-    private lateinit var email: EditText
-    private lateinit var contact: EditText
-    private lateinit var password: EditText
-    private lateinit var ImageViewBack:ImageView
-    private lateinit var txtAlreadyHaveAccount:TextView
-    private lateinit var cirRegisterButton: CircularProgressButton
+class RegisterActivity : AppCompatActivity() , KodeinAware {
+
+    override val kodein by kodein()
+    private val factory: AuthViewModelFactory by instance()
+
+    private lateinit var binding: ActivityLoginBinding
+    private lateinit var viewModel: AuthViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
-        name=findViewById(R.id.editTextName)
-        email=findViewById(R.id.editTextEmail)
-        contact=findViewById(R.id.editTextMobile)
-        password=findViewById(R.id.editTextPassword)
-        ImageViewBack=findViewById(R.id.ImageViewBack)
-        txtAlreadyHaveAccount=findViewById(R.id.txtAlreadyHaveAccount)
-        cirRegisterButton=findViewById(R.id.cirRegisterButton)
 
-        checkInternetConnection(this)
-        cirRegisterButton.setOnClickListener{
-            if(validateInputs(name,email,password,contact)){
-                RegisterUser()
-            }
-        }
-        ImageViewBack.setOnClickListener{
-             LoginActivity()
-        }
-        txtAlreadyHaveAccount.setOnClickListener {
-            LoginActivity()
-        }
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_register)
+        viewModel = ViewModelProvider(this, factory).get(AuthViewModel::class.java)
+
+
+
+//        binding.cirRegisterButton.setOnClickListener {
+//            if(validateInputs(name,email,password,contact)){
+//                RegisterUser()
+//            }
+//        }
+
+//        binding.ImageViewBack.setOnClickListener {
+//             LoginActivity()
+//        }
+//
+//        binding.txtAlreadyHaveAccount.setOnClickListener {
+//            LoginActivity()
+//        }
 
     }
 
-    private fun LoginActivity(){
-        CoroutineScope(Dispatchers.IO).launch {
-            startActivity(
-                    Intent(
-                            this@RegisterActivity,
-                            LoginActivity::class.java
-                    )
-            )
-            finish()
-        }
-    }
 
-    private fun RegisterUser() {
-        val name=name.text.toString()
-        val email=email.text.toString()
-        val password=password.text.toString()
-        val contact=contact.text.toString()
-        CoroutineScope(Dispatchers.IO).launch {
-                startActivity(
-                        Intent(
-                                this@RegisterActivity,
-                                LoginActivity::class.java
-                        )
-                )
-
-            }
-
-        }
 
 
 }

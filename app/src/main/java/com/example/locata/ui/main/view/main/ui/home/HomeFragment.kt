@@ -202,7 +202,6 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener,
         if (ContextCompat.checkSelfPermission(requireContext(),
                         Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mFusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-            mFusedLocationClient?.requestLocationUpdates(mLocationRequest, LocationCallback(), Looper.myLooper())
         }
     }
 

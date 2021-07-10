@@ -44,7 +44,7 @@
                 </RelativeLayout>
 
                     <EditText
-                        android:id="@+id/editTextEmail"
+                        android:id="@+id/edit_text_email"
                         style="@style/modifiedEditText"
                         android:textStyle="bold"
                         android:hint="@string/login_email_hint"
@@ -53,7 +53,7 @@
                         android:maxLines="1" />
 
                     <EditText
-                        android:id="@+id/editTextPassword"
+                        android:id="@+id/edit_text_password"
                         style="@style/modifiedEditText"
                         android:layout_marginTop="@dimen/loginViewsMargin"
                         android:hint="@string/login_password_hint"

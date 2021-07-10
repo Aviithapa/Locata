@@ -1,6 +1,7 @@
 package com.example.locata.data.api
 
 import android.widget.Toast
+import com.example.locata.utils.ApiException
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Response
@@ -24,7 +25,7 @@ abstract class ApiRequest {
                     message.append("\n")
                 }
                 message.append("Error code : ${response.code()}")
-                throw IOException(message.toString())
+                throw ApiException(message.toString())
             }
         }catch (e: Exception){
             Toast.makeText(throw e , "$e", Toast.LENGTH_SHORT).show()

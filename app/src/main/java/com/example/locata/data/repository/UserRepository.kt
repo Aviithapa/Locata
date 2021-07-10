@@ -2,22 +2,23 @@ package com.example.locata.data.repository
 
 import com.example.locata.data.api.ApiRequest
 import com.example.locata.data.api.ApiService
-import com.example.locata.data.api.ServiceBuilder
-import com.example.locata.data.model.User
+import com.example.locata.data.db.AppDatabase
+import com.example.locata.data.db.entities.User
 import com.example.locata.data.response.UserResponse
 
-class UserRepository:ApiRequest() {
+class UserRepository(
+    private val api: ApiService,
+    private val db: AppDatabase
+):ApiRequest() {
 
-    var api= ServiceBuilder.buildServices(ApiService::class.java)
-    var db=
     suspend fun RegisterUser(user: User): UserResponse {
         return apiRequest {
             api.registerUSer(user)
         }
     }
-    suspend fun LoginUser(username:String, password:String):UserResponse   {
+    suspend fun LoginUser(user: User):UserResponse   {
         return apiRequest {
-            api.login(username, password)
+            api.login(user)
         }
     }
 

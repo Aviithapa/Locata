@@ -3,13 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-   <data>
-
-       <variable
-           name="viewmodel"
-           type="com.example.locata.ui.main.viewModel.authentication.AuthViewModel" />
-   </data>
-
     <RelativeLayout
         android:id="@+id/root_layout"
     android:layout_width="match_parent"
@@ -70,7 +63,6 @@
                         style="@style/modifiedEditText"
                         android:layout_marginTop="@dimen/loginViewsMargin"
                         android:hint="Name"
-                        android:text="@={viewmodel.username}"
                         android:inputType="textPersonName"
                         android:maxLines="1" />
 
