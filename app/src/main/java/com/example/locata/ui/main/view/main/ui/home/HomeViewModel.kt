@@ -1,15 +1,14 @@
 package com.example.locata.ui.main.view.main.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+
 import androidx.lifecycle.ViewModel
+import com.example.locata.data.repository.UserRepository
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel (
+repository: UserRepository
+) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
+    val user = repository.getUser()
 
-
+    val location = repository.getlocation()
 }

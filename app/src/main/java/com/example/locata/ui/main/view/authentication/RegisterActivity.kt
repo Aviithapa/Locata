@@ -63,19 +63,20 @@ class RegisterActivity : AppCompatActivity() , KodeinAware {
             try {
                 if (name.isNullOrEmpty() || username.isNullOrEmpty() || phone.isNullOrEmpty() || password.isNullOrEmpty()){
                     if (name.isNullOrEmpty()){
-                        binding.editTextName.error="Enter name field"
+                        binding.editTextName.error="Name is required"
                         binding.editTextName.requestFocus()
                     }else if (username.isNullOrEmpty()){
-                        binding.editTextUserName.error="Enter username field"
+                        binding.editTextUserName.error="Username is required"
                         binding.editTextUserName.requestFocus()
                     }else if (phone.isNullOrEmpty()){
-                        binding.editTextMobile.error="Enter contact number field"
+                        binding.editTextMobile.error="Phone number is required"
                         binding.editTextMobile.requestFocus()
                     }else if (password.isNullOrEmpty()){
-                        binding.editTextPassword.error="Enter password field"
+                        binding.editTextPassword.error="Password is required"
                         binding.editTextPassword.requestFocus()
                     }
-
+                }else if(password.length<8){
+                    binding.root.snackbar("Password must be greater than 8")
                 }else{
                     val authResponse = viewModel.userSignup(user)
                     if (authResponse.data != null) {
