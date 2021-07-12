@@ -5,17 +5,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.lifecycleScope
 import com.example.locata.R
+import com.example.locata.data.db.entities.Location
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
 import java.util.*
 import com.example.locata.databinding.FragmentHomeBinding
 import com.example.locata.utils.ApiException
+import com.example.locata.utils.Coroutines
 import com.example.locata.utils.NoInternetException
 import com.example.locata.utils.snackbar
 import kotlinx.android.synthetic.main.fragment_home.view.*
@@ -25,7 +28,6 @@ class HomeFragment : Fragment() , KodeinAware{
 
 
     override val kodein by kodein()
-
     private lateinit var viewModel: HomeViewModel
     private val factory: HomeViewModelFactory by instance()
     private lateinit var binding:FragmentHomeBinding
@@ -40,6 +42,15 @@ class HomeFragment : Fragment() , KodeinAware{
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
 
+        val destinationLocation=binding.editDestinationLocation
+
+        var location = resources.getStringArray(R.array.Location)
+        val adapter
+                = ArrayAdapter(requireContext(),
+                android.R.layout.simple_list_item_1,location)
+        destinationLocation.setAdapter(adapter)
+
+
         binding.cirgetthebusButton.setOnClickListener {
             getBus()
         }
@@ -51,9 +62,10 @@ class HomeFragment : Fragment() , KodeinAware{
         var destinationLocation=binding.editDestinationLocation.text.toString().trim()
         lifecycleScope.launch {
             try {
-                val authResponse = viewModel.getlocation(user)
+                val authResponse = viewModel.Location()
                 if (authResponse.data != null) {
-                    viewModel.saveLoggedInUser(authResponse.data)
+                    println(authResponse.data)
+                    binding.rootLayout.snackbar(authResponse.message!!)
                 } else {
                     binding.rootLayout.snackbar(authResponse.message!!)
                 }

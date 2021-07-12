@@ -5,20 +5,16 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.locata.data.db.entities.CURRENT_USER_ID
+import com.example.locata.data.db.entities.Location
 import com.example.locata.data.db.entities.Route
-import com.example.locata.data.db.entities.User
 
 
 @Dao
-interface UserDao{
+interface LocationDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upsert(user: User) : Long
+    suspend fun upsertLocation(location: Location):Long
 
-    @Query("SELECT * FROM user WHERE uid = $CURRENT_USER_ID")
-    fun getuser() : LiveData<User>
-
-
-
+    @Query("SELECT * FROM location")
+    fun getlocation() : LiveData<Location>
 }

@@ -3,7 +3,10 @@ package com.example.locata.data.repository
 import com.example.locata.data.api.ApiRequest
 import com.example.locata.data.api.ApiService
 import com.example.locata.data.db.AppDatabase
+import com.example.locata.data.db.entities.Location
+import com.example.locata.data.db.entities.Route
 import com.example.locata.data.db.entities.User
+import com.example.locata.data.response.LocationResponse
 import com.example.locata.data.response.UserResponse
 
 class UserRepository(
@@ -22,8 +25,18 @@ class UserRepository(
         }
     }
 
+    suspend fun Location():LocationResponse{
+        return apiRequest {
+            api.location()
+        }
+    }
+
 
     suspend fun saveUser(user: User) = db.getUserDao().upsert(user)
 
     fun getUser() = db.getUserDao().getuser()
+
+    suspend fun saveRoute(location: Location) = db.getRouteDao().upsertLocation(location)
+
+    fun getRoute() = db.getRouteDao().getlocation()
 }

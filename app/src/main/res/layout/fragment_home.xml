@@ -16,6 +16,7 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 <RelativeLayout
+    android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f8f8f8"
@@ -99,7 +100,8 @@
                     android:text="Destination Location"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"/>
-                <EditText
+
+                <AutoCompleteTextView
                     android:id="@+id/editDestinationLocation"
                     style="@style/modifiedEditText"
                     android:layout_width="match_parent"
@@ -113,6 +115,7 @@
                     android:drawablePadding="12dp"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"/>
+
 
                 <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
                     android:id="@+id/cirgetthebusButton"
