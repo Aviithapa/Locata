@@ -6,6 +6,7 @@ import com.example.locata.data.db.AppDatabase
 import com.example.locata.data.db.entities.Location
 import com.example.locata.data.db.entities.Route
 import com.example.locata.data.db.entities.User
+import com.example.locata.data.db.entities.VehcileRegister
 import com.example.locata.data.response.LocationResponse
 import com.example.locata.data.response.UserResponse
 
@@ -31,6 +32,11 @@ class UserRepository(
         }
     }
 
+    suspend fun vehicleRegister(vehcileRegister: VehcileRegister):UserResponse{
+        return  apiRequest {
+            api.vehicleRegister(vehcileRegister)
+        }
+    }
 
     suspend fun saveUser(user: User) = db.getUserDao().upsert(user)
 

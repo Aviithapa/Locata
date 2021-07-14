@@ -51,6 +51,14 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="accountButton" parent="viewParent">
+        <item name="android:drawable">@drawable/drive</item>
+        <item name="android:background">@drawable/button_background_blue</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="spinnerHintText" parent="parent">
         <item name="android:textSize">@dimen/newsMoreTextSize</item>
         <item name="android:textColor">@color/colorAccent</item>

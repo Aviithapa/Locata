@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.locata.data.db.entities.Location
 import com.example.locata.data.db.entities.Route
 import com.example.locata.data.db.entities.User
+import com.example.locata.data.db.entities.VehcileRegister
 import com.example.locata.data.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -24,6 +25,11 @@ class AuthViewModel(
     suspend fun userSignup(
         user: User
     ) = withContext(Dispatchers.IO) { repository.RegisterUser(user) }
+
+
+    suspend fun vehicleRegister(
+        vehcileRegister: VehcileRegister
+    )= withContext(Dispatchers.IO){repository.vehicleRegister(vehcileRegister)}
 
     suspend fun saveLoggedInUser(user: User) = repository.saveUser(user)
 
