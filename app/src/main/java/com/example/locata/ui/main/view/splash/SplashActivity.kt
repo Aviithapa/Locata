@@ -18,6 +18,7 @@ import com.example.locata.utils.ApiException
 import com.example.locata.utils.Coroutines
 import com.example.locata.utils.NoInternetException
 import com.example.locata.utils.snackbar
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -36,15 +37,12 @@ class SplashActivity : AppCompatActivity()  , KodeinAware {
 
 
         Coroutines.main {
+            delay(3200)
             startActivity(
                     Intent(this, SplashActivity2::class.java)
             )
             finish()
         }
-        Intent(this, SplashActivity2::class.java).also {
-            it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(it)
-
 //        viewModel.getLoggedInUser().observe(this, Observer { user ->
 //            if (user != null) {
 //                Intent(this, HomeActivity::class.java).also {
@@ -63,7 +61,7 @@ class SplashActivity : AppCompatActivity()  , KodeinAware {
             try {
                 val authResponse = viewModel.Location()
                 if (authResponse.data != null) {
-//                   Coroutines.data= authResponse.data
+                    Coroutines.data= authResponse.data
                 } else {
                     binding.rootLayout.snackbar(authResponse.message!!)
                 }

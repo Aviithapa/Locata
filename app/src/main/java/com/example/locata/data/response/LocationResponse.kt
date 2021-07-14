@@ -7,7 +7,7 @@ data class LocationResponse(
         val success:Boolean?=null,
         val message:String?=null,
         val error:String?=null,
-        val data: Location?=null,
+        val data: ArrayList<Location>?=null,
         val id:String?=null
 ) {
 }

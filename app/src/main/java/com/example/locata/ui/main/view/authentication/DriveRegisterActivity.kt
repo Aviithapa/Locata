@@ -10,15 +10,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.locata.R
+import com.example.locata.data.db.entities.Location
 import com.example.locata.data.db.entities.User
 import com.example.locata.data.db.entities.VehcileRegister
 import com.example.locata.databinding.ActivityDriveRegisterBinding
 import com.example.locata.databinding.ActivityLoginBinding
 import com.example.locata.ui.main.viewModel.authentication.AuthViewModel
 import com.example.locata.ui.main.viewModel.authentication.AuthViewModelFactory
-import com.example.locata.utils.ApiException
-import com.example.locata.utils.NoInternetException
-import com.example.locata.utils.snackbar
+import com.example.locata.utils.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -29,6 +28,7 @@ class DriveRegisterActivity : AppCompatActivity() , KodeinAware {
     override val kodein by kodein()
     private val factory: AuthViewModelFactory by instance()
     var routeName:String?=null
+
     private lateinit var binding: ActivityDriveRegisterBinding
     private lateinit var viewModel: AuthViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,20 +43,31 @@ class DriveRegisterActivity : AppCompatActivity() , KodeinAware {
         binding.cirRegisterButton.setOnClickListener {
             Register()
         }
-        val languages = resources.getStringArray(R.array.Location)
+        val collection = Coroutines.data
+        val routes:ArrayList<String>?=null
 
-        // access the spinner
+        println(Coroutines.data)
+//        var language= arrayOf(String())
+        val language: MutableList<String> = ArrayList()
+//        language= arrayOf(Coroutines.data?.get(1)?.name.toString())
+        var i=0
+            for (item in Coroutines.data!!){
+                 language.add(i,item.name.toString())
+                i++
+            }
+
         val spinner = binding.editTextRouteName
         if (spinner != null) {
             val adapter = ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, languages)
+                android.R.layout.simple_spinner_item, language)
             spinner.adapter = adapter
 
             spinner.onItemSelectedListener = object :
                 AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>,
                                             view: View, position: Int, id: Long) {
-                    routeName=languages[position].toString()
+                    routeName= language[position].toString()
+                    println(routeName)
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
@@ -65,6 +76,7 @@ class DriveRegisterActivity : AppCompatActivity() , KodeinAware {
             }
         }
     }
+
 
     private fun Register() {
         val name = binding.editTextName.text.toString().trim()
@@ -118,6 +130,10 @@ class DriveRegisterActivity : AppCompatActivity() , KodeinAware {
                 e.printStackTrace()
             }
         }
+    }
+
+    fun getrouteName(){
+
     }
 
 

@@ -94,12 +94,16 @@
 
                         <Spinner
                             android:id="@+id/editTextRouteName"
-                            style="@style/modifiedEditText"
+
                             android:layout_marginTop="@dimen/loginViewsMargin"
-                            android:hint="Select "
-                            android:maxLines="1" />
-
-
+                            android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
+                            android:popupBackground="@android:color/white"
+                            android:stateListAnimator="@drawable/snipper_sla"
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/dropdownListPreferredItemHeight"
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:textColor="@color/colorAccent"/>
 
                         <EditText
                             android:id="@+id/editTextPassword"

@@ -18,4 +18,7 @@ object Coroutines {
         }
 
     var data: ArrayList<Location>?=null
+
+
 }
+
