@@ -26,7 +26,6 @@ import org.kodein.di.generic.instance
 class SplashActivity : AppCompatActivity()  , KodeinAware {
     override val kodein by kodein()
     private val factory: AuthViewModelFactory by instance()
-
     private lateinit var binding:ActivitySplashBinding
     private lateinit var viewModel: AuthViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,19 +34,30 @@ class SplashActivity : AppCompatActivity()  , KodeinAware {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splash)
         viewModel = ViewModelProvider(this, factory).get(AuthViewModel::class.java)
 
-        viewModel.getLoggedInUser().observe(this, Observer { user ->
-            if (user != null) {
-                Intent(this, HomeActivity::class.java).also {
-                    it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(it)
-                }
-            }else {
-                Intent(this, SplashActivity2::class.java).also {
-                    it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(it)
-                }
-            }
-        })
+
+        Coroutines.main {
+            startActivity(
+                    Intent(this, SplashActivity2::class.java)
+            )
+            finish()
+        }
+        Intent(this, SplashActivity2::class.java).also {
+            it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(it)
+
+//        viewModel.getLoggedInUser().observe(this, Observer { user ->
+//            if (user != null) {
+//                Intent(this, HomeActivity::class.java).also {
+//                    it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                    startActivity(it)
+//                }
+//            }else {
+//                Intent(this, SplashActivity2::class.java).also {
+//                    it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                    startActivity(it)
+//                }
+//            }
+//        })
 
         lifecycleScope.launch {
             try {
