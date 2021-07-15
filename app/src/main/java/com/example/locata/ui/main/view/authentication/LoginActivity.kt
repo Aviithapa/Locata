@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.locata.R
 import com.example.locata.data.db.entities.User
 import com.example.locata.databinding.ActivityLoginBinding
+import com.example.locata.ui.main.view.main.DriverHomeActivity
 import com.example.locata.ui.main.view.main.HomeActivity
 import com.example.locata.ui.main.viewModel.authentication.AuthViewModel
 import com.example.locata.ui.main.viewModel.authentication.AuthViewModelFactory
@@ -37,9 +38,16 @@ class LoginActivity : AppCompatActivity() , KodeinAware {
 
         viewModel.getLoggedInUser().observe(this, Observer { user ->
             if (user != null) {
-                Intent(this, HomeActivity::class.java).also {
-                    it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(it)
+                if (user.role=="User") {
+                    Intent(this, HomeActivity::class.java).also {
+                        it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(it)
+                    }
+                }else{
+                    Intent(this, DriverHomeActivity::class.java).also {
+                        it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(it)
+                    }
                 }
             }
         })

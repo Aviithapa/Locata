@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 data class VehcileRegister(
     val _id:String?=null,
 val vehicle_no:String?=null,
+    val route_Name:String?=null,
 val user_id:String?=null,
 val Location:ArrayList<logitute>?=null,
 val created_at:String?=null

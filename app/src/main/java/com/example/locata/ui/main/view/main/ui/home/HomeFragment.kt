@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -44,12 +45,16 @@ class HomeFragment : Fragment() , KodeinAware{
 
         val destinationLocation=binding.editDestinationLocation
 
-        var location = resources.getStringArray(R.array.Location)
+        val location: MutableList<String> = ArrayList()
+        var i=0
+        for (item in Coroutines.data!!){
+            location.add(i,item.name.toString())
+            i++
+        }
         val adapter
                 = ArrayAdapter(requireContext(),
                 android.R.layout.simple_list_item_1,location)
         destinationLocation.setAdapter(adapter)
-
 
         binding.cirgetthebusButton.setOnClickListener {
             getBus()

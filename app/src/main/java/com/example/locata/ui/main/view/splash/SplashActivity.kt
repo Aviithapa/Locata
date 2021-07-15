@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.locata.R
 import com.example.locata.databinding.ActivitySplashBinding
 import com.example.locata.ui.main.view.authentication.LoginActivity
+import com.example.locata.ui.main.view.main.DriverHomeActivity
 import com.example.locata.ui.main.view.main.HomeActivity
 import com.example.locata.ui.main.view.main.ui.home.HomeViewModel
 import com.example.locata.ui.main.viewModel.authentication.AuthViewModel
@@ -35,27 +36,37 @@ class SplashActivity : AppCompatActivity()  , KodeinAware {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splash)
         viewModel = ViewModelProvider(this, factory).get(AuthViewModel::class.java)
 
+        viewModel.getLoggedInUser().observe(this, Observer { user ->
+            if (user != null) {
+                if (user.role=="User") {
+                    Coroutines.main {
+                        delay(3200)
+                        startActivity(
+                            Intent(this, HomeActivity::class.java)
+                        )
+                        finish()
+                    }
+                }else{
+                    Coroutines.main {
+                        delay(3200)
+                        startActivity(
+                            Intent(this, DriverHomeActivity::class.java)
+                        )
+                        finish()
+                    }
+                }
+            }else{
+                Coroutines.main {
+                    delay(3200)
+                    startActivity(
+                        Intent(this, SplashActivity2::class.java)
+                    )
+                    finish()
+                }
+            }
+        })
 
-        Coroutines.main {
-            delay(3200)
-            startActivity(
-                    Intent(this, SplashActivity2::class.java)
-            )
-            finish()
-        }
-//        viewModel.getLoggedInUser().observe(this, Observer { user ->
-//            if (user != null) {
-//                Intent(this, HomeActivity::class.java).also {
-//                    it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                    startActivity(it)
-//                }
-//            }else {
-//                Intent(this, SplashActivity2::class.java).also {
-//                    it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                    startActivity(it)
-//                }
-//            }
-//        })
+
 
         lifecycleScope.launch {
             try {

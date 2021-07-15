@@ -17,7 +17,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Locata"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.main.view.authentication.DriveRegister2Activity"></activity>
+        <activity android:name=".ui.main.view.main.DriverHomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ui.main.view.authentication.DriveRegisterActivity" />
         <activity android:name=".ui.main.view.splash.SplashActivity2" />
 
@@ -32,11 +38,7 @@
         <activity android:name=".ui.main.view.authentication.RegisterActivity" />
         <activity android:name=".ui.main.view.authentication.LoginActivity" />
         <activity android:name=".ui.main.view.splash.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

@@ -48,7 +48,7 @@ class RegisterActivity : AppCompatActivity() , KodeinAware {
     }
 
     private fun Login(){
-            startActivity(Intent(this, RegisterActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
     }
     private fun Register() {
         val name = binding.editTextName.text.toString().trim()

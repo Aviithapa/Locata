@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+        <RelativeLayout
+            android:id="@+id/root_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#f8f8f8"
+            tools:context=".ui.main.view.main.DriverHomeActivity"
+            android:focusableInTouchMode="true">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/namedetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f8f8f8"
+                android:layout_margin="20dp">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/post_user"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:hint="Abhishek Thapa"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:padding="5dp"
+                    android:text="Where are you going today "/>
+            </androidx.cardview.widget.CardView>
+
+
+
+            <fragment
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_height="650dp" />
+
+            <Button
+                android:id ="@+id/startRide"
+                android:layout_below="@id/map"
+                android:textSize = "12dp"
+                android:textAlignment = "center"
+                android:text="Start Ride"
+                android:background="@drawable/circle_button"
+                android:layout_width = "100dp"
+                android:textColor = "#000"
+                android:layout_marginTop="-150dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height = "100dp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/search_details"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/map"
+                android:textAlignment = "center"
+                android:layout_marginTop="0dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:padding="5dp"
+                    android:text="You are offline "/>
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+    </ScrollView>
+
+</layout>

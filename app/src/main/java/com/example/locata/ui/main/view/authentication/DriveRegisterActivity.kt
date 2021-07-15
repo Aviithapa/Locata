@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.locata.R
 import com.example.locata.data.db.entities.Location
+import com.example.locata.data.db.entities.Route
 import com.example.locata.data.db.entities.User
 import com.example.locata.data.db.entities.VehcileRegister
 import com.example.locata.databinding.ActivityDriveRegisterBinding
@@ -43,31 +44,24 @@ class DriveRegisterActivity : AppCompatActivity() , KodeinAware {
         binding.cirRegisterButton.setOnClickListener {
             Register()
         }
-        val collection = Coroutines.data
-        val routes:ArrayList<String>?=null
-
-        println(Coroutines.data)
-//        var language= arrayOf(String())
-        val language: MutableList<String> = ArrayList()
-//        language= arrayOf(Coroutines.data?.get(1)?.name.toString())
+        val location: MutableList<String> = ArrayList()
         var i=0
             for (item in Coroutines.data!!){
-                 language.add(i,item.name.toString())
+                 location.add(i,item.name.toString())
                 i++
             }
 
         val spinner = binding.editTextRouteName
         if (spinner != null) {
             val adapter = ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, language)
+                android.R.layout.simple_spinner_item, location)
             spinner.adapter = adapter
 
             spinner.onItemSelectedListener = object :
                 AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>,
                                             view: View, position: Int, id: Long) {
-                    routeName= language[position].toString()
-                    println(routeName)
+                    routeName= location[position].toString()
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
@@ -86,7 +80,6 @@ class DriveRegisterActivity : AppCompatActivity() , KodeinAware {
         val vehicle_no= binding.editVehicleNumber.text.toString().trim()
         val routeName=routeName;
         val role="Driver"
-
         val user: User = User(name=name,username = username,phone_number = phone,password = password, role = role)
 
         //@todo add input validations
@@ -111,10 +104,12 @@ class DriveRegisterActivity : AppCompatActivity() , KodeinAware {
                 }else{
                     val authResponse = viewModel.userSignup(user)
                     if (authResponse.data != null) {
-                        val vehcileRegister : VehcileRegister = VehcileRegister(vehicle_no=vehicle_no,user_id =authResponse.data._id )
+                        val vehcileRegister : VehcileRegister = VehcileRegister(vehicle_no=vehicle_no,user_id =authResponse.data._id,route_Name = routeName )
                         val vehcileResponse = viewModel.vehicleRegister(vehcileRegister)
                         if (vehcileResponse.data != null) {
                             viewModel.saveLoggedInUser(authResponse.data)
+                            binding.root.snackbar(vehcileResponse.message!!)
+                            println(vehcileResponse.message)
                         }else{
                             binding.root.snackbar(authResponse.message!!)
                         }
@@ -132,9 +127,6 @@ class DriveRegisterActivity : AppCompatActivity() , KodeinAware {
         }
     }
 
-    fun getrouteName(){
-
-    }
 
 
 }
